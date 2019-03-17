@@ -2,427 +2,430 @@
 #pragma comment(lib, "CoalaMOD.lib")
 
 
-void testBlock(Location loc) {
+void testBlock(int x, int y, int z) {
 	int count = 50;
 	for (int i = 0; i < count; i++) {
 		BlockID block = createBlock(BlockType(i + 1));
-		locateBlock(block, loc.x, loc.y, loc.z + 2 * i + 1);
+		locateBlock(block, x, y, z + 2 * i + 1);
 	}
 }
 
-void testOre(Location loc) {
+void testOre(int x, int y, int z) {
 	int count = 9;
 	for (int i = 0; i < count; i++) {
 		BlockID block = createOre(OreType(i + 1));
-		locateOre(block, loc.x, loc.y, loc.z + 2 * i + 1);
+		locateOre(block, x, y, z + 2 * i + 1);
 	}
 }
 
-void testBricks(Location loc) {
+void testBricks(int x, int y, int z) {
 	int count = 7;
 	for (int i = 0; i < count; i++) {
 		BlockID block = createBricks(BricksType(i + 1));
-		locateBricks(block, loc.x, loc.y, loc.z + 2 * i + 1);
+		locateBricks(block, x, y, z + 2 * i + 1);
 	}
 }
 
-void testPlanks(Location loc) {
+void testPlanks(int x, int y, int z) {
 	int count = 6;
 	for (int i = 0; i < count; i++) {
 		BlockID block = createPlanks(PlanksType(i + 1));
-		locatePlanks(block, loc.x, loc.y, loc.z + 2 * i + 1);
+		locatePlanks(block, x, y, z + 2 * i + 1);
 	}
 }
 
-void testWood(Location loc) {
+void testWood(int x, int y, int z) {
 	int count = 24;
 	for (int i = 0; i < count; i++) {
 		BlockID block = createWood(WoodType(i / 4 + 1), WoodStrip(i % 4));
-		locateWood(block, loc.x, loc.y, loc.z + 2 * i + 1);
+		locateWood(block, x, y, z + 2 * i + 1);
 	}
 }
 
-void testStairs(Location loc) {
+void testStairs(int x, int y, int z) {
 	BlockOrientation orientations[4] = { FACING_EAST, FACING_WEST, FACING_SOUTH, FACING_NORTH };
 	int count = 14;
 
 	for (int i = 0; i < count; i++) {
 		BlockID block = createStairs(StairsType(i + 1), i % 2 == 0);
-		installStairs(block, loc.x, loc.y, loc.z + 2 * i + 1, orientations[i % 4]);
+		installStairs(block, x, y, z + 2 * i + 1, orientations[i % 4]);
 	}
 }
 
-void testDoor(Location loc) {
+void testDoor(int x, int y, int z) {
 	BlockOrientation orientations[4] = { FACING_EAST, FACING_WEST, FACING_SOUTH, FACING_NORTH };
 	int count = 13;
 	for (int i = 0; i < count; i++) {
 		BlockID block = createDoor(DoorType(i + 1), i % 2 == 0, DoorHinge(i % 2));
-		installDoor(block, loc.x, loc.y, loc.z + 2 * i + 1, orientations[i % 4]);
+		installDoor(block, x, y, z + 2 * i + 1, orientations[i % 4]);
 	}
 }
 
-void testFence(Location loc) {
+void testFence(int x, int y, int z) {
 	int count = 7;
 	for (int i = 0; i < count; i++) {
 		BlockID block = createFence(FenceType(i + 1));
-		locateFence(block, loc.x, loc.y, loc.z + i + 1);
-		locateFence(block, loc.x + 1, loc.y, loc.z + i + 1);
+		locateFence(block, x, y, z + i + 1);
+		locateFence(block, x + 1, y, z + i + 1);
 	}
 }
 
-void testPane(Location loc) {
+void testPane(int x, int y, int z) {
 	int count = 2;
 	for (int i = 0; i < count; i++) {
 		BlockID block = createPane(PaneType(i + 1));
-		locatePane(block, loc.x, loc.y, loc.z + i + 1);
-		locatePane(block, loc.x + 1, loc.y, loc.z + i + 1);
+		locatePane(block, x, y, z + i + 1);
+		locatePane(block, x + 1, y, z + i + 1);
 	}
 
 	count = 16;
 	for (int i = 0; i < count; i++) {
 		BlockID block = createPane(BlockColor(i));
-		locatePane(block, loc.x, loc.y, loc.z + i + 3);
-		locatePane(block, loc.x + 1, loc.y, loc.z + i + 3);
+		locatePane(block, x, y, z + i + 3);
+		locatePane(block, x + 1, y, z + i + 3);
 	}
 }
 
-void testFlower(Location loc) {
+void testFlower(int x, int y, int z) {
 	int count = 17;
 	for (int i = 0; i < count; i++) {
 		BlockID block = createFlower(FlowerType(i + 1));
-		locateFlower(block, loc.x, loc.y, loc.z + 2 * i + 1);
+		locateFlower(block, x, y, z + 2 * i + 1);
 	}
 }
 
-void testSlab(Location loc) {
+void testSlab(int x, int y, int z) {
 	int count = 23;
 	for (int i = 0; i < count; i++) {
 		BlockID block1 = createSlab(SlabType(i + 1));
 		BlockID block2 = createSlab(SlabType(i + 1), SLAB_UPPER);
 		BlockID block3 = createSlab(SlabType(i + 1), SLAB_DOUBLE);
 
-		locateSlab(block1, loc.x, loc.y, loc.z + 2 * i + 1);
-		locateSlab(block2, loc.x - 1, loc.y, loc.z + 2 * i + 1);
-		locateSlab(block3, loc.x, loc.y, loc.z + 2 * i);
+		locateSlab(block1, x, y, z + 2 * i + 1);
+		locateSlab(block2, x - 1, y, z + 2 * i + 1);
+		locateSlab(block3, x, y, z + 2 * i);
 	}
 }
 
-void testTerracotta(Location loc) {
+void testTerracotta(int x, int y, int z) {
 	int count = 16;
 	for (int i = 0; i < count; i++) {
 		BlockID block = createTerracotta(TERRACOTTA, BlockColor(i));
-		locateTerracotta(block, loc.x, loc.y, loc.z + 2 * i + 1);
+		locateTerracotta(block, x, y, z + 2 * i + 1);
 	}
 
 
 	for (int i = 0; i < count; i++) {
 		BlockID block = createTerracotta(TERRACOTTA_GLAZED, BlockColor(i));
-		locateTerracotta(block, loc.x, loc.y, loc.z + 2 * i);
+		locateTerracotta(block, x, y, z + 2 * i);
 	}
 }
 
-void testShulkerBox(Location loc) {
+void testShulkerBox(int x, int y, int z) {
 	int count = 16;
 	for (int i = 0; i < count; i++) {
 		BlockID block = createShulkerBox(BlockColor(i));
-		locateShulkerBox(block, loc.x, loc.y, loc.z + 2 * i + 1);
+		locateShulkerBox(block, x, y, z + 2 * i + 1);
 	}
 }
 
-void testWool(Location loc) {
+void testWool(int x, int y, int z) {
 
 	int count = 16;
 	for (int i = 0; i < count; i++) {
 		BlockID block = createWool(BlockColor(i));
-		locateWool(block, loc.x, loc.y, loc.z + 2 * i + 1);
+		locateWool(block, x, y, z + 2 * i + 1);
 	}
 }
 
-void testCarpet(Location loc) {
+void testCarpet(int x, int y, int z) {
 
 	int count = 16;
 	for (int i = 0; i < count; i++) {
 		BlockID block = createCarpet(BlockColor(i));
-		locateCarpet(block, loc.x, loc.y, loc.z + 2 * i + 1);
+		locateCarpet(block, x, y, z + 2 * i + 1);
 	}
 }
 
-void testSign(Location loc) {
+void testSign(int x, int y, int z) {
 	BlockID block = createSign(SignType(SIGN_STANDING), "1st line", "2nd line", "3rd line", "4th line");
 	int count = 16;
 	for (int i = 0; i < count; i++) {
-		installSign(block, loc.x, loc.y, loc.z + 2 * i + 1, BlockOrientation(i));
+		installSign(block, x, y, z + 2 * i + 1, BlockOrientation(i));
 	}
 }
 
-void testBanner(Location loc) {
+void testBanner(int x, int y, int z) {
 	int count = 16;		// for all colors and orientations
 	for (int i = 0; i < count; i++) {
 		int banner = createBanner(BANNER_STANDING, "", BlockColor(i));
 		addPatternToBanner(banner, BlockColor((i + 1) % 16), "flo");
-		installBanner(banner, loc.x, loc.y, loc.z + 2 * i + 1, BlockOrientation(i));
+		installBanner(banner, x, y, z + 2 * i + 1, BlockOrientation(i));
 	}
 }
 
-void testTorch(Location loc) {
+void testTorch(int x, int y, int z) {
 	int stone = createBlock(BLOCK_STONE);
 	TorchID torch = createTorch();
 
-	locateBlock(stone, loc.x + 1, loc.y, loc.z + 1);
-	installTorch(torch, loc.x + 1, loc.y + 1, loc.z + 1, FACING_UP);
+	locateBlock(stone, x + 1, y, z + 1);
+	installTorch(torch, x + 1, y + 1, z + 1, FACING_UP);
 
 	int count = 5;
 	for (int i = 0; i < count; i++) {
-		locateBlock(stone, loc.x + 2, loc.y + i, loc.z + 2);
+		locateBlock(stone, x + 2, y + i, z + 2);
 
-		installTorch(torch, loc.x + 1, loc.y + i, loc.z + 2, FACING_WEST);
-		installTorch(torch, loc.x + 3, loc.y + i, loc.z + 2, FACING_EAST);
-		installTorch(torch, loc.x + 2, loc.y + i, loc.z + 1, FACING_NORTH);
-		installTorch(torch, loc.x + 2, loc.y + i, loc.z + 3, FACING_SOUTH);
+		installTorch(torch, x + 1, y + i, z + 2, FACING_WEST);
+		installTorch(torch, x + 3, y + i, z + 2, FACING_EAST);
+		installTorch(torch, x + 2, y + i, z + 1, FACING_NORTH);
+		installTorch(torch, x + 2, y + i, z + 3, FACING_SOUTH);
 	}
 }
 
-void testLadder(Location loc) {
+void testLadder(int x, int y, int z) {
 	int stone = createBlock(BLOCK_STONE);
 	int ladder = createLadder();
 
 	int count = 5;
 	for (int i = 0; i < count; i++) {
-		locateBlock(stone, loc.x + 2, loc.y + i, loc.z + 2);
-		installLadder(ladder, loc.x + 1, loc.y + i, loc.z + 2, FACING_WEST);
-		installLadder(ladder, loc.x + 3, loc.y + i, loc.z + 2, FACING_EAST);
-		installLadder(ladder, loc.x + 2, loc.y + i, loc.z + 1, FACING_NORTH);
-		installLadder(ladder, loc.x + 2, loc.y + i, loc.z + 3, FACING_SOUTH);
+		locateBlock(stone, x + 2, y + i, z + 2);
+		installLadder(ladder, x + 1, y + i, z + 2, FACING_WEST);
+		installLadder(ladder, x + 3, y + i, z + 2, FACING_EAST);
+		installLadder(ladder, x + 2, y + i, z + 1, FACING_NORTH);
+		installLadder(ladder, x + 2, y + i, z + 3, FACING_SOUTH);
 	}
 }
 
-void testRail(Location loc) {
+void testRail(int x, int y, int z) {
 	int rail = createRail(RAIL);
 	int count = 5;
 
-	installRail(rail, loc.x + 1, loc.y, loc.z + 1, RAIL_CONNECTING_SOUTH_EAST);
+	installRail(rail, x + 1, y, z + 1, RAIL_CONNECTING_SOUTH_EAST);
 	for (int i = 1; i < count; i++) {
-		installRail(rail, loc.x + i + 1, loc.y, loc.z + 1, RAIL_CONNECTING_EAST_WEST);
+		installRail(rail, x + i + 1, y, z + 1, RAIL_CONNECTING_EAST_WEST);
 	}
 
-	installRail(rail, loc.x + count + 1, loc.y, loc.z + 1, RAIL_CONNECTING_SOUTH_WEST);
+	installRail(rail, x + count + 1, y, z + 1, RAIL_CONNECTING_SOUTH_WEST);
 	for (int i = 1; i < count; i++) {
-		installRail(rail, loc.x + count + 1, loc.y, loc.z + i + 1, RAIL_CONNECTING_NORTH_SOUTH);
+		installRail(rail, x + count + 1, y, z + i + 1, RAIL_CONNECTING_NORTH_SOUTH);
 	}
 
-	installRail(rail, loc.x + count + 1, loc.y, loc.z + count + 1, RAIL_CONNECTING_NORTH_WEST);
+	installRail(rail, x + count + 1, y, z + count + 1, RAIL_CONNECTING_NORTH_WEST);
 	for (int i = 1; i < count; i++) {
-		installRail(rail, loc.x + count - i + 1, loc.y, loc.z + count + 1, RAIL_CONNECTING_EAST_WEST);
+		installRail(rail, x + count - i + 1, y, z + count + 1, RAIL_CONNECTING_EAST_WEST);
 	}
 
-	installRail(rail, loc.x + 1, loc.y, loc.z + count + 1, RAIL_CONNECTING_NORTH_EAST);
+	installRail(rail, x + 1, y, z + count + 1, RAIL_CONNECTING_NORTH_EAST);
 	for (int i = 1; i < count; i++) {
-		installRail(rail, loc.x + 1, loc.y, loc.z + count - i + 1, RAIL_CONNECTING_NORTH_SOUTH);
+		installRail(rail, x + 1, y, z + count - i + 1, RAIL_CONNECTING_NORTH_SOUTH);
 	}
 }
 
-void testPressurePlate(Location loc) {
+void testPressurePlate(int x, int y, int z) {
 	int count = 4;
 
 	for (int i = 0; i < count; i++) {
 		PressurePlateID block = createPressurePlate(PressurePlateType(i + 1));
-		locatePressurePlate(block, loc.x, loc.y, loc.z + 2 * i + 1);
+		locatePressurePlate(block, x, y, z + 2 * i + 1);
 	}
 
 }
 
-void testButton(Location loc) {
+void testButton(int x, int y, int z) {
 	BlockID stone = createBlock(BLOCK_STONE);
-	locateBlock(stone, loc.x, loc.y + 4, loc.z);
+	locateBlock(stone, x, y + 4, z);
 
 	ButtonID btn1 = createButton(BUTTON_STONE);
-	installButton(btn1, loc.add(0, 3, 0), FACING_DOWN);
-	installButton(btn1, loc.add(0, 5, 0), FACING_UP);
-	installButton(btn1, loc.add(1, 4, 0), FACING_EAST);
-	installButton(btn1, loc.add(-1, 4, 0), FACING_WEST);
-	installButton(btn1, loc.add(0, 4, -1), FACING_NORTH);
-	installBanner(btn1, loc.add(0, 4, 1), FACING_SOUTH);
+	installButton(btn1, x, y + 3, z, FACING_DOWN);
+	installButton(btn1, x, y + 5, z, FACING_UP);
+	installButton(btn1, x + 1, y + 4, z, FACING_EAST);
+	installButton(btn1, x - 1, y + 4, z, FACING_WEST);
+	installButton(btn1, x, y + 4, z - 1, FACING_NORTH);
+	installBanner(btn1, x, y + 4, z + 1, FACING_SOUTH);
 
-	loc = loc.add(0, 0, 5);
+	z += 5;
+
 	PlanksID oak = createPlanks(PLANKS_OAK);
-	locatePlanks(oak, loc.x, loc.y + 4, loc.z);
+	locatePlanks(oak, x, y + 4, z);
 
 	ButtonID btn2 = createButton(BUTTON_WOOD);
-	installButton(btn2, loc.add(0, 3, 0), FACING_DOWN);
-	installButton(btn2, loc.add(0, 5, 0), FACING_UP);
-	installButton(btn2, loc.add(1, 4, 0), FACING_EAST);
-	installButton(btn2, loc.add(-1, 4, 0), FACING_WEST);
-	installButton(btn2, loc.add(0, 4, -1), FACING_NORTH);
-	installBanner(btn2, loc.add(0, 4, 1), FACING_SOUTH);
+	installButton(btn2, x, y + 3, z, FACING_DOWN);
+	installButton(btn2, x, y + 5, z, FACING_UP);
+	installButton(btn2, x + 1, y + 4, z, FACING_EAST);
+	installButton(btn2, x - 1, y + 4, z, FACING_WEST);
+	installButton(btn2, x, y + 4, z - 1, FACING_NORTH);
+	installBanner(btn2, x, y + 4, z + 1, FACING_SOUTH);
 }
 
-void testConcrete(Location loc) {
+void testConcrete(int x, int y, int z) {
 	int count = 16;
 	for (int i = 0; i < count; i++) {
 		BlockID block1 = createConcrete(BlockColor(i));
 		BlockID block2 = createConcrete(BlockColor(i), true);
-		locateConcrete(block1, loc.x, loc.y, loc.z + 2 * i + 1);
-		locateConcrete(block2, loc.x + 1, loc.y, loc.z + 2 * i + 1);
+		locateConcrete(block1, x, y, z + 2 * i + 1);
+		locateConcrete(block2, x + 1, y, z + 2 * i + 1);
 	}
 }
 
-void testAnvil(Location loc) {
+void testAnvil(int x, int y, int z) {
 	BlockOrientation orientations[4] = { FACING_EAST, FACING_WEST, FACING_SOUTH, FACING_NORTH };	int count = 12;
 
 	for (int i = 0; i < count; i++) {
 		BlockID block = createAnvil(i % 3);
-		installAnvil(block, loc.x, loc.y, loc.z + 2 * i + 1, orientations[i % 4]);
+		installAnvil(block, x, y, z + 2 * i + 1, orientations[i % 4]);
 	}
 }
 
-void testPlant(Location loc) {
+void testPlant(int x, int y, int z) {
 	int count = 26;
 	for (int i = 0; i < count; i++) {
 		BlockID block = createPlant(PlantType(i + 1));
-		locatePlant(block, loc.x, loc.y, loc.z + 2 * i + 1);
+		locatePlant(block, x, y, z + 2 * i + 1);
 	}
 }
 
-void testWater(Location loc) {
+void testWater(int x, int y, int z) {
 	BlockID stone = createBlock(BLOCK_STONE);
 	for (int i = 0; i < 3; i++) {
 		for (int j = 0; j < 5; j++)
-			locateBlock(stone, loc.x + i, loc.y, loc.z + j);
+			locateBlock(stone, x + i, y, z + j);
 	}
 	BlockID water1 = createWater();
 	BlockID water2 = createWater(true);
-	locateWater(water1, loc.x + 1, loc.y, loc.z + 1);
-	locateWater(water2, loc.x + 1, loc.y, loc.z + 3);
+	locateWater(water1, x + 1, y, z + 1);
+	locateWater(water2, x + 1, y, z + 3);
 }
 
-void testBed(Location loc) {
+void testBed(int x, int y, int z) {
 	BedID bed = createBed();
-	installBed(bed, loc, FACING_EAST);
-	installBed(bed, loc.add(0, 0, 3), FACING_WEST);
-	installBed(bed, loc.add(0, 0, 6), FACING_NORTH);
-	installBed(bed, loc.add(0, 0, 9), FACING_SOUTH);
+	installBed(bed, x, y, z, FACING_EAST);
+	installBed(bed, x, y, z + 3, FACING_WEST);
+	installBed(bed, x, y, z + 6, FACING_NORTH);
+	installBed(bed, x, y, z + 9, FACING_SOUTH);
+
 }
 
-void testBookShelf(Location loc) {
-	locateBookshelf(createBookshelf(), loc);
+void testBookShelf(int x, int y, int z) {
+	locateBookshelf(createBookshelf(), x, y, z);
 }
 
-void testBeacon(Location loc) {
-	locateBeacon(createBeacon(), loc);
+void testBeacon(int x, int y, int z) {
+	locateBeacon(createBeacon(), x, y, z);
 }
 
-void testBarrier(Location loc) {
-	locateBarrier(createBarrier(), loc);
+void testBarrier(int x, int y, int z) {
+	locateBarrier(createBarrier(), x, y, z);
 }
 
-void testBrewingStand(Location loc) {
-	locateBrewingStand(createBrewingStand(), loc);
+void testBrewingStand(int x, int y, int z) {
+	locateBrewingStand(createBrewingStand(), x, y, z);
 }
 
-void testCake(Location loc) {
+void testCake(int x, int y, int z) {
 	int eaten = 7;
 	for (int i = 0; i < eaten; i++) {
-		locateCake(createCake(i), loc.add(0, 0, i));
+		locateCake(createCake(i), x, y, z + i);
 	}
 }
 
-void testIce(Location loc) {
+void testIce(int x, int y, int z) {
 	int type = 3;
 	for (int i = 0; i < type; i++) {
-		locateIce(createIce(IceType(i)), loc.add(0, 0, i));
+		locateIce(createIce(IceType(i)), x, y, z + i);
 	}
 }
 
-void testLava(Location loc) {
+void testLava(int x, int y, int z) {
 	BlockID stone = createBlock(BLOCK_STONE);
 	for (int i = 0; i < 3; i++) {
 		for (int j = 0; j < 5; j++)
-			locateBlock(stone, loc.x + i, loc.y, loc.z + j);
+			locateBlock(stone, x + i, y, z + j);
 	}
 	BlockID lava1 = createLava();
 	BlockID lava2 = createLava(true);
-	locateWater(lava1, loc.x + 1, loc.y, loc.z + 1);
-	locateWater(lava2, loc.x + 1, loc.y, loc.z + 3);
+	locateWater(lava1, x + 1, y, z + 1);
+	locateWater(lava2, x + 1, y, z + 3);
 }
 
-void testPumpkin(Location loc) {
+void testPumpkin(int x, int y, int z) {
 	PumpkinID pumpkin = createPumpkin();
-	installPumpkin(pumpkin, loc, FACING_EAST);
-	installPumpkin(pumpkin, loc.add(0, 0, 2), FACING_WEST);
-	installPumpkin(pumpkin, loc.add(0, 0, 4), FACING_NORTH);
-	installPumpkin(pumpkin, loc.add(0, 0, 6), FACING_SOUTH);
+	installPumpkin(pumpkin, x, y, z, FACING_EAST);
+	installPumpkin(pumpkin, x, y, z + 2, FACING_WEST);
+	installPumpkin(pumpkin, x, y, z + 4, FACING_NORTH);
+	installPumpkin(pumpkin, x, y, z + 6, FACING_SOUTH);
+
 }
 
-void testSnow(Location loc) {
-	for (int i = 0; i < 9; i++)
-		locateSnow(createSnow(i), loc.add(0, 0, i));
+void testSnow(int x, int y, int z) {
+	for (int i = 0; i < 8; i++)
+		locateSnow(createSnow(i), x, y, z + i);
 }
 
-void testCauldron(Location loc) {
+void testCauldron(int x, int y, int z) {
 	int full = 4;
 	for (int i = 0; i < full; i++) {
-		locateCauldron(createCauldron(i), loc.add(0, 0, i));
+		locateCauldron(createCauldron(i), x, y, z + i);
 	}
 }
 
-void testTables(Location loc) {
-	locateCraftingTable(createCraftingTable(), loc);
-	locateEnchantingTable(createEnchantingTable(), loc.add(0, 0, 3));
+void testTables(int x, int y, int z) {
+	locateCraftingTable(createCraftingTable(), x, y, z);
+	locateEnchantingTable(createEnchantingTable(), x, y, z + 3);
 }
 
 
-void testFlowerPot(Location loc) {
+void testFlowerPot(int x, int y, int z) {
 	int type = 14;
 	for (int i = 0; i < type; i++) {
 		FlowerPotID pot = createFlowerPot(FlowerPotType(i + 1));
-		locateFlowerPot(pot, loc.add(0, 0, i));
+		locateFlowerPot(pot, x, y, z + i);
 	}
 }
 
-void testFurnace(Location loc) {
+void testFurnace(int x, int y, int z) {
 	FurnaceID furnace = createFurnace();
-	installFurnace(furnace, loc.add(0, 0, 0), FACING_NORTH);
-	installFurnace(furnace, loc.add(0, 0, 2), FACING_SOUTH);
-	installFurnace(furnace, loc.add(0, 0, 4), FACING_EAST);
-	installFurnace(furnace, loc.add(0, 0, 6), FACING_WEST);
+	installFurnace(furnace, x, y, z, FACING_NORTH);
+	installFurnace(furnace, x, y, z + 2, FACING_SOUTH);
+	installFurnace(furnace, x, y, z + 4, FACING_EAST);
+	installFurnace(furnace, x, y, z + 6, FACING_WEST);
 }
 
-void testLanterns(Location loc) {
+void testLanterns(int x, int y, int z) {
 	JackOLanternID j = createJackOLantern();
-	installJackOLantern(j, loc.add(0, 0, 0), FACING_NORTH);
-	installJackOLantern(j, loc.add(0, 0, 2), FACING_SOUTH);
-	installJackOLantern(j, loc.add(0, 0, 4), FACING_EAST);
-	installJackOLantern(j, loc.add(0, 0, 6), FACING_WEST);
+	installJackOLantern(j, x, y, z, FACING_NORTH);
+	installJackOLantern(j, x, y, z + 2, FACING_SOUTH);
+	installJackOLantern(j, x, y, z + 4, FACING_EAST);
+	installJackOLantern(j, x, y, z + 6, FACING_WEST);
 
 	SeaLanternID s = createSeaLantern();
-	locateSeaLantern(s, loc.add(0, 0, 8));
+	locateSeaLantern(s, x, y, z + 8);
 }
 
-void testLever(Location loc) {
+void testLever(int x, int y, int z) {
 	BlockID stone = createBlock(BLOCK_STONE);
 	LeverID lever = createLever();
 
 	for (int i = 0; i < 6; i++)
-		locateBlock(stone, loc.add(0, 3, 2 * i));
+		locateBlock(stone, x, y + 3, z + 2 * i);
 
-	installLever(lever, loc.add(0, 4, 0), FACING_UP);
-	installLever(lever, loc.add(0, 2, 2), FACING_DOWN);
-	installLever(lever, loc.add(1, 3, 4), FACING_EAST);
-	installLever(lever, loc.add(0, 3, 7), FACING_SOUTH);
-	installLever(lever, loc.add(-1, 3, 8), FACING_WEST);
-	installLever(lever, loc.add(0, 3, 9), FACING_NORTH);
+	installLever(lever, x, y + 4, z, FACING_UP);
+	installLever(lever, x, y + 2, z + 2, FACING_DOWN);
+	installLever(lever, x + 1, y + 3, z + 4, FACING_EAST);
+	installLever(lever, x, y + 3, z + 7, FACING_SOUTH);
+	installLever(lever, x - 1, y + 3, z + 8, FACING_WEST);
+	installLever(lever, x, y + 3, z + 9, FACING_NORTH);
 }
 
-void testSponge(Location loc) {
-	locateSponge(createSponge(), loc);
+void testSponge(int x, int y, int z) {
+	locateSponge(createSponge(), x, y, z);
 }
 
 
-#define TEST(f)		test ## f (loc.add(x, 0, 0 )); x += 5
+#define TEST(f)		test ## f (px + x, py, pz); x += 5
 
 int main() {
-	Location loc = getPlayerLocation();
-	int x = 5;
+	int px, py, pz, x = 5;
+	getPlayerLocation(&px, &py, &pz);
 
 	TEST(Block);
 	TEST(Ore);
