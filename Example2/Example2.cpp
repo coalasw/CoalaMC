@@ -442,6 +442,7 @@ int main() {
 	TEST(ShulkerBox);
 	TEST(Wool);
 	TEST(Carpet);
+	TEST(Sign);
 	TEST(Banner);
 	TEST(Torch);
 	TEST(Ladder);
